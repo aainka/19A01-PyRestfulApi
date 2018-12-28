@@ -32,7 +32,7 @@ def api_post():
     Subject= jsonObj[0].get("subject")
     Message= jsonObj[0].get("message")
   
-    m_eMail.send(toMail,Subject,Message)
+    ## m_eMail.send(toMail,Subject,Message)
     return jsonObj              
 
 @bottle.post('/favorite_fruits')
