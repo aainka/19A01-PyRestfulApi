@@ -4,6 +4,7 @@
 import bottle
 import json
 import mail_send
+import file_api
 
 mythings = {'망고종류','bb'}
 
@@ -33,7 +34,14 @@ def api_post():
     Message= jsonObj[0].get("message")
   
     m_eMail.send(toMail,Subject,Message)
-    return jsonObj              
+    return jsonObj  
+
+@bottle.get('/api/V1/file')
+
+def api_file():
+    s = file_api.get_directory('c:/')
+    return s
+
 
 @bottle.post('/favorite_fruits')
 
