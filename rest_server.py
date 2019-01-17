@@ -20,9 +20,9 @@ def home_page():
 def api_post():
     print("/api/V1:put ###################")
     body = bottle.request.body.read()
-    print("BODY="+body.decode("utf-8"))
+    print("BODY ="+body.decode("utf-8"))
     jsonObj = json.loads(body.decode("utf-8"))
-    print("OBJ="+jsonObj[0].get("subject"))
+    print("OBJ  ="+jsonObj[0].get("subject"))
     smtp_server='aainka@gmail.com'
     smtp_server_password='inka4723'
     print("MMMMMMMMMMMMMMMMMMMMMMMMMM")
@@ -32,7 +32,7 @@ def api_post():
     Subject= jsonObj[0].get("subject")
     Message= jsonObj[0].get("message")
   
-    ## m_eMail.send(toMail,Subject,Message)
+    m_eMail.send(toMail,Subject,Message)
     return jsonObj              
 
 @bottle.post('/favorite_fruits')

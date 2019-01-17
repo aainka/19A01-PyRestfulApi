@@ -2,7 +2,7 @@
  
 import smtplib
 import os
-import email
+import email.message
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
@@ -28,12 +28,16 @@ class cEMail():
     
     def send(self,toEMail,subject,message):
         print("mail.send subject "+subject)
-        msg = MIMEText(message)
+        #msg = MIMEText(message)
+        msg = MIMEMultipart('alternative')
         msg['Subject'] = subject
         msg['Date'] = formatdate(localtime=True)
         msg['From'] = self.smtpServer
         msg['To'] = toEMail
-        msg.add_header('Content-Type',"text/html")
+        part1 = MIMEText(message,'html')
+        msg.attach(part1)
+        #msg.add_header('Content-Type',"text/html")
+        #msg.set_payload(message)
         fromEMail=self.smtpServer
         self.smtp.sendmail(fromEMail, toEMail, msg.as_string())
         
