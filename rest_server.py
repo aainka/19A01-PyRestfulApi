@@ -39,8 +39,13 @@ def api_post():
 @bottle.get('/api/V1/file')
 
 def api_file():
-    s = file_api.get_directory('c:/')
-    return s
+    dir = bottle.request.query.dir
+    if dir != None and len(dir)>0:
+        s = file_api.get_directory(dir)
+        return s
+    else :
+        readfile = bottle.request.query.readfile
+        return file_api.read_file(readfile)
 
 
 @bottle.post('/favorite_fruits')
@@ -59,6 +64,5 @@ def favorite_fruits():
 
  
 
-bottle.debug(True)
 
 bottle.run(host='0.0.0.0',port=9292)
