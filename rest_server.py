@@ -47,6 +47,13 @@ def api_file():
         readfile = bottle.request.query.readfile
         return file_api.read_file(readfile)
 
+@bottle.post('/api/V1/file')
+def api_write_file():
+    dir = bottle.request.query.dir
+    body = bottle.request.body.read()
+    print("BODY ="+body.decode("utf-8"))
+    jsonObj = json.loads(body.decode("utf-8"))
+    return file_api.write_file(jsonObj)
 
 @bottle.post('/favorite_fruits')
 
