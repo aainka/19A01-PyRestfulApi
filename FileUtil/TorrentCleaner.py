@@ -36,6 +36,7 @@ def moves(group_id):
             print("+  "+file_path)
             if (os.path.exists(dst_dir+"\\"+item)):
                 print("file exist -->"+file_path)
+                os.remove(file_path)
             else:
                 shutil.move(file_path, dst_dir) 
 
