@@ -10,16 +10,27 @@ base_dir = 'C:/@DEV/200529_v1863_InnoEyeSimulator_NewUI/trunk'
 path_dir = 'U:\토렌토5'
 scan_dir = 'U:\토렌토5\download'
 id_list = []
+count = 1
+
+f = open("c:/tmp/div_source.csv", 'w')
+
 
 def scan(path):
+    global count
     file_list = os.listdir(path)
     for item in file_list:
         fitem = path +'/'+item
         if ( os.path.isdir(fitem)):
             scan(fitem)
         else:
-            if fitem.find('.cpp') > 0 :
-                print("%s,%s"%(item,fitem[50:]))
+            extname = item.split('.')
+            dirlist = fitem[50:].split('/')
+            if ( len(extname) > 1):
+                print("%d,%s,%s,%s,%s"%(count,extname[1],dirlist[0],item,fitem[50:]))
+                f.write("%d,%s,%s,%s,%s\n"%(count,extname[1],dirlist[0],item,fitem[50:]))
+                count = count + 1
+            # if fitem.find('.cpp') > 0 :
+            #     print("%s,%s"%(item,fitem[50:]))
         # if ( item.find('.torrent') > 0 ) :
         #     print('Torrent:: %s'%item)
         #     file_path = path_dir + "\\"+item
@@ -52,7 +63,9 @@ def moves(group_id):
 #-----------------------------
 
 print('file scan')
+count =1
 scan(base_dir)
+f.close()
 
 # file_list = os.listdir(path_dir)
 # print('file scan end')
