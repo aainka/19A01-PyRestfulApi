@@ -49,7 +49,7 @@ def file_check(fullname):
     size = os.path.getsize(fullname)
     name = os.path.split(fullname) # path, name 분리
     extname = name[1].split('.') # 확장자 분리
-    limit = 70*1024*1024
+    limit = 90*1024*1024
     if ( size > limit):
         print("fullname [%4d] %s    %d "%(count, name[1],size))
         extset.add(extname[1])
